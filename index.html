@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawahar Anand | AI Portfolio</title>
+    <style>
+        /* --- RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+        }
+
+        /* --- MAGIC CURSOR --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00f3ff;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #00f3ff;
+            transition: width 0.2s, height 0.2s, top 0.1s, left 0.1s;
+        }
+
+        body.hovering .cursor-outline {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 243, 255, 0.1);
+            border-color: #bc13fe;
+        }
+
+        /* --- BACKGROUND --- */
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+
+        /* --- NAV --- */
+        nav {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            background: rgba(5,5,5,0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo { font-size: 1.5rem; color: #00f3ff; font-weight: bold; letter-spacing: 2px; }
+        .nav-links a { margin-left: 25px; color: #fff; text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .nav-links a:hover { color: #bc13fe; }
+
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 120px 10%; min-height: 100vh; }
+        h2 { font-size: 2.5rem; margin-bottom: 50px; border-left: 5px solid #bc13fe; padding-left: 20px; }
+        
+        /* --- HERO --- */
+        .hero { display: flex; flex-direction: column; justify-content: center; }
+        h1 { font-size: 4rem; margin-bottom: 10px; line-height: 1; }
+        h1 span { color: #bc13fe; text-shadow: 0 0 15px #bc13fe; }
+        .typing-text { font-size: 1.5rem; color: #00f3ff; margin-bottom: 30px; height: 30px; }
+        
+        .btn {
+            padding: 15px 40px;
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+            text-align: center;
+            background: transparent;
+        }
+        .btn:hover { background: #00f3ff; color: #000; box-shadow: 0 0 20px #00f3ff; }
+
+        /* --- CARDS (About & Projects) --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 25px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #00f3ff; box-shadow: 0 0 15px rgba(0, 243, 255, 0.2); }
+        .tag { color: #00f3ff; font-size: 0.8rem; border: 1px solid #00f3ff; padding: 2px 8px; margin-right: 5px; display: inline-block; margin-top: 10px; }
+
+        /* --- RESUME TIMELINE --- */
+        .timeline { border-left: 2px solid #333; padding-left: 30px; margin-left: 10px; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -36px; top: 5px;
+            width: 10px; height: 10px; background: #bc13fe; border-radius: 50%;
+            box-shadow: 0 0 10px #bc13fe;
+        }
+        .timeline-date { color: #00f3ff; font-size: 0.9rem; margin-bottom: 5px; display: block; }
+        .timeline-title { font-size: 1.2rem; font-weight: bold; color: #fff; margin-bottom: 5px; }
+        .timeline-desc { color: #888; font-size: 0.9rem; }
+
+        /* --- CONTACT FORM --- */
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .form-group { margin-bottom: 20px; }
+        input, textarea {
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.05);
+            border: 1px solid #333; color: #fff; font-family: inherit; outline: none; transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: #00f3ff; box-shadow: 0 0 10px rgba(0,243,255,0.2); }
+        
+        @media (max-width: 768px) {
+            .contact-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Mobile menu hidden for simplicity in this version */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="grid-bg"></div>
+
+    <nav>
+        <div class="logo">JAWAHAR.AI</div>
+        <div class="nav-links">
+            <a href="#home" class="hover-target">Home</a>
+            <a href="#about" class="hover-target">About</a>
+            <a href="#projects" class="hover-target">Projects</a>
+            <a href="#resume" class="hover-target">Resume</a>
+            <a href="#contact" class="hover-target">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Hello, I'm <br><span>Jawahar Anand</span></h1>
+        <div class="typing-text" id="typewriter"></div>
+        <a href="#contact" class="btn hover-target">Connect With Me</a>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p style="max-width: 600px; color: #ccc; margin-bottom: 30px;">
+            I am a 3rd Year <strong>AI & Data Science</strong> student. I bridge the gap between complex data and user-friendly applications.
+        </p>
+        <div class="grid">
+            <div class="card hover-target">
+                <h3>Technical Skills</h3>
+                <span class="tag">Python</span>
+                <span class="tag">TensorFlow</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Java</span>
+            </div>
+            <div class="card hover-target">
+                <h3>Interests</h3>
+                <span class="tag">Neural Networks</span>
+                <span class="tag">Web Dev</span>
+                <span class="tag">Robotics</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+            <div class="card hover-target">
+                <h3>Stock Prediction LSTM</h3>
+                <p>Forecasting stock trends using historical data and Deep Learning.</p>
+                <span class="tag">AI / ML</span>
+            </div>
+            <div class="card hover-target">
+                <h3>Face Mask Detector</h3>
+                <p>Real-time computer vision system using OpenCV.</p>
+                <span class="tag">Computer Vision</span>
+            </div>
+            <div class="card hover-target">
+                <h3>College Chatbot</h3>
+                <p>Automated student support using NLP techniques.</p>
+                <span class="tag">NLP</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <h2>My Resume</h2>
+        <div class="timeline">
+            <div class="timeline-item hover-target">
+                <span class="timeline-date">2023 - Present</span>
+                <h3 class="timeline-title">B.Tech - AI & Data Science</h3>
+                <p class="timeline-desc">Currently in 3rd Year. Focusing on Machine Learning algorithms and Data Structures.</p>
+            </div>
+            <div class="timeline-item hover-target">
+                <span class="timeline-date">2021 - 2023</span>
+                <h3 class="timeline-title">Higher Secondary Education</h3>
+                <p class="timeline-desc">Completed with distinction in Computer Science stream.</p>
+            </div>
+            <div class="timeline-item hover-target">
+                <span class="timeline-date">2020</span>
+                <h3 class="timeline-title">Secondary Education</h3>
+                <p class="timeline-desc">Foundation in Mathematics and Science.</p>
+            </div>
+        </div>
+        <br>
+        <a href="#" class="btn hover-target">Download CV (PDF)</a>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-container">
+            <div>
+                <p style="color:#ccc; margin-bottom: 20px;">
+                    Feel free to reach out for collaborations, internships, or just a tech chat.
+                </p>
+                <div style="margin-bottom: 15px;">
+                    <strong style="color:#00f3ff;">Email:</strong> <br>
+                    <span class="hover-target">jawahar.ai@example.com</span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong style="color:#bc13fe;">LinkedIn:</strong> <br>
+                    <span class="hover-target">linkedin.com/in/jawahar</span>
+                </div>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" class="hover-target">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" class="hover-target">
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Your Message" class="hover-target"></textarea>
+                </div>
+                <button class="btn hover-target">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // --- CURSOR LOGIC ---
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            dot.style.left = `${posX}px`;
+            dot.style.top = `${posY}px`;
+
+            // Simple animation for outline
+            outline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Hover Effect
+        document.querySelectorAll('.hover-target').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+            });
+            item.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+            });
+        });
+
+        // --- TYPING EFFECT ---
+        const textElement = document.getElementById('typewriter');
+        const phrases = ["AI & DS Student", "Machine Learning Enthusiast", "Web Developer"];
+        let pIndex = 0;
+        let cIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const current = phrases[pIndex];
+            
+            if(isDeleting) {
+                textElement.textContent = current.substring(0, cIndex - 1);
+                cIndex--;
+            } else {
+                textElement.textContent = current.substring(0, cIndex + 1);
+                cIndex++;
+            }
+
+            let speed = isDeleting ? 50 : 100;
+
+            if(!isDeleting && cIndex === current.length) {
+                speed = 2000; // Pause at end
+                isDeleting = true;
+            } else if(isDeleting && cIndex === 0) {
+                isDeleting = false;
+                pIndex = (pIndex + 1) % phrases.length;
+            }
+
+            setTimeout(typeLoop, speed);
+        }
+        
+        // Start typing
+        typeLoop();
+    </script>
+</body>
+</html>
