@@ -3,325 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jawahar Anand | AI Portfolio</title>
-    <style>
-        /* --- RESET --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none; /* Hide default cursor */
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: hidden;
-        }
-
-        /* --- MAGIC CURSOR --- */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #00f3ff;
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #00f3ff;
-            transition: width 0.2s, height 0.2s, top 0.1s, left 0.1s;
-        }
-
-        body.hovering .cursor-outline {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(0, 243, 255, 0.1);
-            border-color: #bc13fe;
-        }
-
-        /* --- BACKGROUND --- */
-        .grid-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: -1;
-        }
-
-        /* --- NAV --- */
-        nav {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-            background: rgba(5,5,5,0.95);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .logo { font-size: 1.5rem; color: #00f3ff; font-weight: bold; letter-spacing: 2px; }
-        .nav-links a { margin-left: 25px; color: #fff; text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
-        .nav-links a:hover { color: #bc13fe; }
-
-        /* --- SECTIONS GENERAL --- */
-        section { padding: 120px 10%; min-height: 100vh; }
-        h2 { font-size: 2.5rem; margin-bottom: 50px; border-left: 5px solid #bc13fe; padding-left: 20px; }
-        
-        /* --- HERO --- */
-        .hero { display: flex; flex-direction: column; justify-content: center; }
-        h1 { font-size: 4rem; margin-bottom: 10px; line-height: 1; }
-        h1 span { color: #bc13fe; text-shadow: 0 0 15px #bc13fe; }
-        .typing-text { font-size: 1.5rem; color: #00f3ff; margin-bottom: 30px; height: 30px; }
-        
-        .btn {
-            padding: 15px 40px;
-            border: 1px solid #00f3ff;
-            color: #00f3ff;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            transition: 0.3s;
-            text-align: center;
-            background: transparent;
-        }
-        .btn:hover { background: #00f3ff; color: #000; box-shadow: 0 0 20px #00f3ff; }
-
-        /* --- CARDS (About & Projects) --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 25px; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #00f3ff; box-shadow: 0 0 15px rgba(0, 243, 255, 0.2); }
-        .tag { color: #00f3ff; font-size: 0.8rem; border: 1px solid #00f3ff; padding: 2px 8px; margin-right: 5px; display: inline-block; margin-top: 10px; }
-
-        /* --- RESUME TIMELINE --- */
-        .timeline { border-left: 2px solid #333; padding-left: 30px; margin-left: 10px; }
-        .timeline-item { position: relative; margin-bottom: 40px; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -36px; top: 5px;
-            width: 10px; height: 10px; background: #bc13fe; border-radius: 50%;
-            box-shadow: 0 0 10px #bc13fe;
-        }
-        .timeline-date { color: #00f3ff; font-size: 0.9rem; margin-bottom: 5px; display: block; }
-        .timeline-title { font-size: 1.2rem; font-weight: bold; color: #fff; margin-bottom: 5px; }
-        .timeline-desc { color: #888; font-size: 0.9rem; }
-
-        /* --- CONTACT FORM --- */
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .form-group { margin-bottom: 20px; }
-        input, textarea {
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.05);
-            border: 1px solid #333; color: #fff; font-family: inherit; outline: none; transition: 0.3s;
-        }
-        input:focus, textarea:focus { border-color: #00f3ff; box-shadow: 0 0 10px rgba(0,243,255,0.2); }
-        
-        @media (max-width: 768px) {
-            .contact-container { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-            nav { padding: 20px; }
-            .nav-links { display: none; } /* Mobile menu hidden for simplicity in this version */
-        }
-    </style>
+    <title>Your Name - Professional Portfolio</title>
+    <meta name="description" content="Professional portfolio showcasing software development, UI/UX design, and data analysis projects">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <div class="grid-bg"></div>
-
-    <nav>
-        <div class="logo">JAWAHAR.AI</div>
-        <div class="nav-links">
-            <a href="#home" class="hover-target">Home</a>
-            <a href="#about" class="hover-target">About</a>
-            <a href="#projects" class="hover-target">Projects</a>
-            <a href="#resume" class="hover-target">Resume</a>
-            <a href="#contact" class="hover-target">Contact</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#hero">Your Name</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>Hello, I'm <br><span>Jawahar Anand</span></h1>
-        <div class="typing-text" id="typewriter"></div>
-        <a href="#contact" class="btn hover-target">Connect With Me</a>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p style="max-width: 600px; color: #ccc; margin-bottom: 30px;">
-            I am a 3rd Year <strong>AI & Data Science</strong> student. I bridge the gap between complex data and user-friendly applications.
-        </p>
-        <div class="grid">
-            <div class="card hover-target">
-                <h3>Technical Skills</h3>
-                <span class="tag">Python</span>
-                <span class="tag">TensorFlow</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Java</span>
-            </div>
-            <div class="card hover-target">
-                <h3>Interests</h3>
-                <span class="tag">Neural Networks</span>
-                <span class="tag">Web Dev</span>
-                <span class="tag">Robotics</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="grid">
-            <div class="card hover-target">
-                <h3>Stock Prediction LSTM</h3>
-                <p>Forecasting stock trends using historical data and Deep Learning.</p>
-                <span class="tag">AI / ML</span>
-            </div>
-            <div class="card hover-target">
-                <h3>Face Mask Detector</h3>
-                <p>Real-time computer vision system using OpenCV.</p>
-                <span class="tag">Computer Vision</span>
-            </div>
-            <div class="card hover-target">
-                <h3>College Chatbot</h3>
-                <p>Automated student support using NLP techniques.</p>
-                <span class="tag">NLP</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="resume">
-        <h2>My Resume</h2>
-        <div class="timeline">
-            <div class="timeline-item hover-target">
-                <span class="timeline-date">2023 - Present</span>
-                <h3 class="timeline-title">B.Tech - AI & Data Science</h3>
-                <p class="timeline-desc">Currently in 3rd Year. Focusing on Machine Learning algorithms and Data Structures.</p>
-            </div>
-            <div class="timeline-item hover-target">
-                <span class="timeline-date">2021 - 2023</span>
-                <h3 class="timeline-title">Higher Secondary Education</h3>
-                <p class="timeline-desc">Completed with distinction in Computer Science stream.</p>
-            </div>
-            <div class="timeline-item hover-target">
-                <span class="timeline-date">2020</span>
-                <h3 class="timeline-title">Secondary Education</h3>
-                <p class="timeline-desc">Foundation in Mathematics and Science.</p>
-            </div>
-        </div>
-        <br>
-        <a href="#" class="btn hover-target">Download CV (PDF)</a>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-container">
-            <div>
-                <p style="color:#ccc; margin-bottom: 20px;">
-                    Feel free to reach out for collaborations, internships, or just a tech chat.
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Jawahar Anand R V</h1>
+                <h2 class="hero-subtitle">UI/UX Designer | Data Analyst</h2>
+                <p class="hero-description">
+                    Creating elegant solutions to complex problems through clean code, intuitive design, and data-driven insights.
                 </p>
-                <div style="margin-bottom: 15px;">
-                    <strong style="color:#00f3ff;">Email:</strong> <br>
-                    <span class="hover-target">jawahar.ai@example.com</span>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <strong style="color:#bc13fe;">LinkedIn:</strong> <br>
-                    <span class="hover-target">linkedin.com/in/jawahar</span>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
-
-            <form>
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" class="hover-target">
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" class="hover-target">
-                </div>
-                <div class="form-group">
-                    <textarea rows="5" placeholder="Your Message" class="hover-target"></textarea>
-                </div>
-                <button class="btn hover-target">Send Message</button>
-            </form>
         </div>
     </section>
 
-    <script>
-        // --- CURSOR LOGIC ---
-        const dot = document.querySelector('.cursor-dot');
-        const outline = document.querySelector('.cursor-outline');
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Hello! I'm Jawahar Anand, a B.Tech undergraduate in Artificial Intelligence and Data Science at Kumaraguru College of Technology. I am passionate about designing intelligent systems that bridge the gap between data, technology, and real-world impact.
+                    </p>
+                    <p>
+                        My academic focus lies in machine learning, deep learning, and data-driven decision-making. I enjoy
+                        building solutions that move beyond theory into application—transforming complex datasets into
+                        meaningful insights and functional products. I have developed an American Sign Language (ASL) image
+                        classification model using transfer learning techniques and created prototype applications such as a
+                        smart parking system that emphasizes usability and real-time problem solving.
+                    </p>
+                    <p>
+                        Through these projects, I have gained hands-on experience in data preprocessing, model development, evaluation, and deploying user-oriented solutions. I am particularly interested in exploring domains like cybersecurity, sports analytics, and intelligent automation, where AI can create scalable and socially beneficial innovations.
 
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+I am continuously learning, experimenting, and refining my technical and analytical skills, with the goal of becoming an AI engineer who builds impactful, efficient, and responsible technology.
 
-            dot.style.left = `${posX}px`;
-            dot.style.top = `${posY}px`;
+Core Interests:
+Machine Learning • Deep Learning • Data Analytics • Applied AI Solutions • Intelligent Systems Design
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="D:\portffolio\profile-image.jpg" alt="Jawahar Anand" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
 
-            // Simple animation for outline
-            outline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Tableau</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Methodologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Scrum</span>
+                        <span class="skill-tag">Design Thinking</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Power BI Analyst</span>
+                        <span class="skill-tag">Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Hover Effect
-        document.querySelectorAll('.hover-target').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                document.body.classList.add('hovering');
-            });
-            item.addEventListener('mouseleave', () => {
-                document.body.classList.remove('hovering');
-            });
-        });
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p class="project-description">
+                            Developed a full-stack e-commerce solution with real-time inventory management, secure payment processing, 
+                            and responsive design that increased user engagement by 40%.
+                        </p>
+                        <div class="project-role">
+                            <strong>Role:</strong> Lead Developer & UI/UX Designer
+                        </div>
+                        <div class="project-skills">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Stripe API</span>
+                        </div>
+                        <div class="project-results">
+                            <strong>Results:</strong> 40% increase in user engagement, 25% reduction in cart abandonment
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Live Demo</a>
+                            <a href="#" class="btn btn-small btn-outline">GitHub</a>
+                        </div>
+                    </div>
+                </div>
 
-        // --- TYPING EFFECT ---
-        const textElement = document.getElementById('typewriter');
-        const phrases = ["AI & DS Student", "Machine Learning Enthusiast", "Web Developer"];
-        let pIndex = 0;
-        let cIndex = 0;
-        let isDeleting = false;
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analytics Dashboard</h3>
+                        <p class="project-description">
+                            Created an interactive data visualization dashboard for business intelligence, enabling real-time 
+                            monitoring of key performance indicators and automated reporting.
+                        </p>
+                        <div class="project-role">
+                            <strong>Role:</strong> Data Analyst & Frontend Developer
+                        </div>
+                        <div class="project-skills">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">D3.js</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Tableau</span>
+                        </div>
+                        <div class="project-results">
+                            <strong>Results:</strong> 60% faster decision-making, 35% improvement in data accuracy
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Live Demo</a>
+                            <a href="#" class="btn btn-small btn-outline">Case Study</a>
+                        </div>
+                    </div>
+                </div>
 
-        function typeLoop() {
-            const current = phrases[pIndex];
-            
-            if(isDeleting) {
-                textElement.textContent = current.substring(0, cIndex - 1);
-                cIndex--;
-            } else {
-                textElement.textContent = current.substring(0, cIndex + 1);
-                cIndex++;
-            }
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Mobile Banking App</h3>
+                        <p class="project-description">
+                            Designed and developed a secure mobile banking application with biometric authentication, 
+                            real-time transactions, and intuitive user experience.
+                        </p>
+                        <div class="project-role">
+                            <strong>Role:</strong> UI/UX Designer & Mobile Developer
+                        </div>
+                        <div class="project-skills">
+                            <span class="skill-tag">React Native</span>
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">REST API</span>
+                        </div>
+                        <div class="project-results">
+                            <strong>Results:</strong> 4.8-star rating, 50k+ downloads, 95% user satisfaction
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">App Store</a>
+                            <a href="#" class="btn btn-small btn-outline">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            let speed = isDeleting ? 50 : 100;
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 – Present</div>
+                    <div class="timeline-content">
+                        <h3>Junior Data Scientist (Trainee / Academic-Industry Oriented Role)</h3>
+                        <h4>Academic & Project-Based Work</h4>
+                        <ul>
+                            <li>Applied machine learning and data analysis techniques to solve structured, real-world problem statements through academic and project-based work</li>
+                            <li>Developed predictive and classification models using Python, leveraging libraries such as NumPy, Pandas, and TensorFlow/Keras for data-driven solutions</li>
+                            <li>Built an American Sign Language (ASL) recognition system using transfer learning, improving model accuracy through data preprocessing, augmentation, and hyperparameter tuning</li>
+                            <li>Designed a smart parking prototype focusing on real-time availability tracking and optimized allocation logic to enhance user convenience</li>
+                            <li>Conducted exploratory data analysis (EDA), feature engineering, and performance evaluation to ensure reliable and interpretable model outcomes</li>
+                            <li>Collaborated in lab environments to translate theoretical AI/ML concepts into deployable solutions and technical presentations</li>
+                            <li>Continuously researching emerging applications of AI in cybersecurity, automation, and analytics-driven decision systems</li>
+                        </ul>
+                    </div>
+                </div>
 
-            if(!isDeleting && cIndex === current.length) {
-                speed = 2000; // Pause at end
-                isDeleting = true;
-            } else if(isDeleting && cIndex === 0) {
-                isDeleting = false;
-                pIndex = (pIndex + 1) % phrases.length;
-            }
+                <div class="timeline-item">
+                    <div class="timeline-date">2022-23</div>
+                    <div class="timeline-content">
+                        <h3>UI/UX Designer & Frontend Developer</h3>
+                        <h4>Digital Creative Agency</h4>
+                        <ul>
+                            <li>Designed user interfaces for 15+ client projects</li>
+                            <li>Conducted user research and usability testing</li>
+                            <li>Improved website conversion rates by 35% through design optimization</li>
+                            <li>Developed responsive websites using modern frameworks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            setTimeout(typeLoop, speed);
-        }
-        
-        // Start typing
-        typeLoop();
-    </script>
+    <!-- Certificates & Education Section -->
+    <section id="certificates" class="certificates">
+        <div class="container">
+            <h2 class="section-title">Certificates & Education</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Power BI Business Scenarios with Hands on Use Cases</h3>
+                    <p class="certificate-issuer">Udemy</p>
+                    <p class="certificate-year">2025</p>
+                    <p class="certificate-skills">Data Analysis, Power BI, Business Intelligence</p>
+                </div>
+
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Google UX Design Professional Certificate</h3>
+                    <p class="certificate-issuer">Google</p>
+                    <p class="certificate-year">2022</p>
+                    <p class="certificate-skills">User Research, Prototyping, Design Systems</p>
+                </div>
+
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Data Visualization</h3>
+                    <p class="certificate-issuer">Coursera - University of Illinois Urbana-Champaign</p>
+                    <p class="certificate-year">2025</p>
+                    <p class="certificate-skills">Data Visualization, Visual Analytics, Data Storytelling</p>
+                </div>
+
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>B.Tech Artificial Intelligence & Data Science</h3>
+                    <p class="certificate-issuer">Kumaraguru College of Technology</p>
+                    <p class="certificate-year">2023</p>
+                    <p class="certificate-skills">Machine Learning, Data Science, AI Algorithms, Deep Learning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Open to Opportunities</h3>
+                    <p>
+                        I'm always interested in hearing about new projects and opportunities. 
+                        Whether you have a question or just want to say hi, feel free to reach out!
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:rvjawaharanand@gmail.com">rvjawaharanand@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+917904688634">+91 7904688634</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Coimbatore, India</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/jawahar-anand-r-v-b91534281/" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/jawahar-anand28" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Portfolio">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Your Name. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/jawahar-anand-r-v-b91534281/" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/jawahar-anand28" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
